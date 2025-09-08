@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Shield Lite</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Project Shield Lite</h1>
+            <p>Анализ устойчивости вашего проекта к неожиданным изменениям</p>
+        </header>
+        
+        <div class="setup-section">
+            <h2>Настройка проекта</h2>
+            
+            <div class="form-group">
+                <label for="projectName">Название проекта:</label>
+                <input type="text" id="projectName" value="Мой проект" placeholder="Введите название проекта">
+            </div>
+            
+            <div class="form-group">
+                <label>Добавьте задачи проекта:</label>
+                <div id="tasks-container">
+                    <div class="task-item">
+                        <input type="text" class="task-name" value="Задача 1" placeholder="Название задачи">
+                        <input type="number" class="task-duration" value="5" min="1" max="30" placeholder="Дней">
+                        <select class="task-risk">
+                            <option value="low">Низкий риск</option>
+                            <option value="medium" selected>Средний риск</option>
+                            <option value="high">Высокий риск</option>
+                        </select>
+                    </div>
+                </div>
+                <button onclick="addTask()" class="secondary">+ Добавить задачу</button>
+            </div>
+            
+            <div class="form-group">
+                <label>Ключевые риски:</label>
+                <div class="risks-grid">
+                    <div class="risk-item">
+                        <input type="checkbox" id="risk-supply" checked>
+                        <label for="risk-supply">Задержки поставок</label>
+                    </div>
+                    <div class="risk-item">
+                        <input type="checkbox" id="risk-staff" checked>
+                        <label for="risk-staff">Проблемы с персоналом</label>
+                    </div>
+                    <div class="risk-item">
+                        <input type="checkbox" id="risk-tech" checked>
+                        <label for="risk-tech">Технические сложности</label>
+                    </div>
+                    <div class="risk-item">
+                        <input type="checkbox" id="risk-market" checked>
+                        <label for="risk-market">Изменения рынка</label>
+                    </div>
+                    <div class="risk-item">
+                        <input type="checkbox" id="risk-weather" checked>
+                        <label for="risk-weather">Погодные условия</label>
+                    </div>
+                </div>
+            </div>
+            
+            <button onclick="runSimulation()" class="primary">Запустить анализ устойчивости</button>
+            <div id="status" class="status"></div>
+        </div>
+        
+        <div id="results" class="results-section" style="display:none;">
+            <h2>Результаты анализа</h2>
+            
+            <div class="summary-metrics">
+                <div class="metric-card">
+                    <h3>🛡️ Уровень устойчивости</h3>
+                    <div class="metric-value" id="resilience-score">0%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="resilience-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>⏱️ Вероятность в срок</h3>
+                    <div class="metric-value" id="on-time">0%</div>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>⚠️ Критические задачи</h3>
+                    <div class="metric-value" id="critical-tasks">0</div>
+                </div>
+            </div>
+            
+            <div class="gantt-container">
+                <h3>Диаграмма проекта с рисками</h3>
+                <div id="gantt-chart" class="gantt-chart"></div>
+            </div>
+            
+            <div class="recommendations">
+                <h3>Рекомендации по укреплению проекта</h3>
+                <ul id="recommendations-list"></ul>
+            </div>
+            
+            <button onclick="generatePDF()" class="export">Экспорт отчета PDF</button>
+        </div>
+    </div>
+    
+    <script src="shield-simulator.js"></script>
+</body>
+</html>
